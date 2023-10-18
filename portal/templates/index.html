@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>To-Do App</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="/">To-Dooo!</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/todos">All To-Dos</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <h1>Create a To-Do</h1>
+        <div class="row">
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">To-Do</h5>
+                        <form method="POST" action="{{ url_for('create_todo') }}">
+                            <div class="form-group">
+                                <label for="todo-name">Name:</label>
+                                <input type="text" class="form-control" name="todo-name" id="todo-name">
+                            </div>
+                            <div class="form-group">
+                                <label for="todo-description">Description:</label>
+                                <input type="text" class="form-control" name="todo-description" id="todo-description" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Do</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Toast Notification -->
+    <div class="toast" id="success-toast" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="true" data-delay="3000">
+        <div class="toast-header">
+            <strong class="mr-auto">Success!</strong>
+        </div>
+        <div class="toast-body">
+            To-Do created successfully.
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#success-toast').toast('show');
+        });
+    </script>
+</body>
+</html>
